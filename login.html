@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Login</title>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+      function add(){
+         let umobile=document.getElementById("mobile").value  
+      axios.post("https://codingshika.com/APP/EXP/user_login.php?mobile="+umobile)
+          .then(response=>{
+               let U_ID=response.data.posts.id;
+               localStorage.setItem("id",U_ID);
+               let n=response.data.posts.name;
+          if(response.data.posts.status =="200")
+          {
+              alert("login successful"+" "+n)
+              window.location.href="dashboard.html";
+          }
+          else
+          {
+              alert("Login Fail.");
+          }
+       })
+      }   
+  </script>
+  
+</head>
+<body>
+  <div class="login-container">
+    <h2 class="title">USER Login</h2>
+    <img src="img/k2.jpg" style="border-radius: 30px;" alt="Key Icon" class="login-image" />
+    <input type="text" id="mobile" placeholder="Mobile Number" class="input-field" />
+    <button onclick="add()" class="sign-in-btn" style="width: 375px;">SIGN IN</button>
+    <p class="signup-text">
+      DON'T HAVE AN ACCOUNT? <a href="reg.html" class="signup-link">SIGN UP</a>
+    </p>
+  </div>
+
+</body>
+</html>

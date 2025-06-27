@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Registration</title>
+  <link rel="stylesheet" href="css/styles2.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function add(){
+        let name=document.getElementById("name").value
+        let mobile=document.getElementById("mobile").value
+        let opbal=document.getElementById("opbal").value
+      axios.post("https://codingshika.com/APP/EXP/add_user.php?uname="+name+"&mobile="+mobile+"&opbal="+opbal)
+      .then(response=>{
+      if(response.data.posts.status=="200")
+      {
+        //alert("hello")
+        window.location.href="login.html"
+      }
+      else
+      {
+        alert("Add User Fail.")
+      }
+     })
+ }
+ 
+</script>
+</head>
+<body>
+  <div class="overlay">
+    <div class="registration-card">
+      <h2 class="header">User Registration</h2>
+      <button class="close-btn">&times;</button>
+      <img src="img/u1.png" style="border-radius: 30px;" alt="User Icon" class="user-img">
+      <form>
+        <input type="text" id="name" placeholder=" User Name" class="input-field" required>
+        <input type="tel" id="mobile" placeholder=" User Mobile Number" class="input-field" required>
+        <input type="number" id="opbal" placeholder=" Opening Balance" class="input-field" required>
+        <button type="button" onclick="add()" class="save-btn">SAVE</button>
+        <br><br>
+        <a href="login.html">Old User? Login</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
